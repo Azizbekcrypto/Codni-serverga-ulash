@@ -7,7 +7,7 @@ async function bootstrap() {
   const PORT = Number(process.env.PORT);
   const app = await NestFactory.create(AppModule);
 
-  app.setGlobalPrefix('/api');
+  // app.setGlobalPrefix('/api');
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -26,7 +26,7 @@ async function bootstrap() {
     .build();
     
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document); // Swagger endpoint: /api-docs
+  SwaggerModule.setup('docs', app, document); // Swagger endpoint: /api-docs
 
   await app.listen(PORT, () => console.log('server running on port', PORT));
 }
