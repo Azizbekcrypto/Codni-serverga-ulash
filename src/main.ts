@@ -17,16 +17,14 @@ async function bootstrap() {
     }),
   );
 
-  // 🔹 Swagger sozlash
   const config = new DocumentBuilder()
-    .setTitle('Codni API')
-    .setDescription('Codni server API hujjatlari')
+    .setTitle('Saller example')
+    .setDescription('The saller API description')
     .setVersion('1.0')
-    .addBearerAuth() // agar JWT auth ishlatilsa
+    .addTag('sallers')
     .build();
-    
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document); // Swagger endpoint: /api-docs
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, documentFactory);
 
   await app.listen(PORT, () => console.log('server running on port', PORT));
 }
